@@ -10,7 +10,7 @@ class ExData {
     int dyLength;
     int set1;
     int set2;
-
+    boolean useVoiceRecognition;
     final String[] poseName={"오른쪽 팔꿈치를","오른쪽 손목을","왼쪽 팔꿈치를","왼쪽 손목을","오른쪽 허벅지를","오른쪽 종아리를","왼쪽 허벅지를","왼쪽 종아리를"};
     //exCode: 0->static Exercise
     //1-> dynamic Exercise

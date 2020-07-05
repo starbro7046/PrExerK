@@ -1,17 +1,13 @@
 package com.example.fruitsman.prexerk
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
 
-    val TAG = "TEST:"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(tranSta)
         }
         setBtn.setOnClickListener {
-            val tranSet = Intent(this@MainActivity, ExKeepActivity::class.java)
+            val tranSet = Intent(this@MainActivity, SettingActivity::class.java)
             startActivity(tranSet)
         }
         dataBtn.setOnClickListener {

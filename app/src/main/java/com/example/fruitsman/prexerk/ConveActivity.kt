@@ -24,6 +24,16 @@ class ConveActivity : AppCompatActivity() {
 
         val editor = data.edit()
 
+        val zestureButton = findViewById(R.id.zesture) as SwitchButton
+        zestureButton.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                editor.putBoolean("zes", true);
+                editor.commit()
+            } else {
+                editor.putBoolean("zes", false);
+                editor.commit()
+            }
+        }
         val endButton = findViewById(R.id.end) as SwitchButton
         endButton.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -168,7 +178,9 @@ class ConveActivity : AppCompatActivity() {
                     .show()
             }
         })
-
+        if(data.getBoolean("zes",false)){
+            zestureButton.toggleNoEvent()
+        }
         if(data.getBoolean("end",false)){
             endButton.toggleNoEvent()
         }

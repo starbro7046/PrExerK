@@ -658,6 +658,7 @@ class CameraActivity :
         */
         //최소 1초 이상 유지
         val dataE: ExData = ExData.getInstance()
+        val isUseVoice:Boolean=dataE.useVoiceRecognition;
         if(dataE.exCode==0) {
             dataArray = intArrayOf(
                 getAngle(6, 8, person),
@@ -725,19 +726,19 @@ class CameraActivity :
                     (activity as ExKeepActivity).speak(textMessage)
                 }
             }
-            if(abs(dataArray[0])>=165&&abs(dataArray[1])>=165){
-                for(i2 in 2..7){
-                    if(-105<=dataArray[i2]&&dataArray[i2]<= -75){
-
-                    }else{
-                        break;
-                    }
-                    if(i2>=7){
-                        if (((activity as ExKeepActivity).tts.isSpeaking)) {
-                            (activity as ExKeepActivity).tts.stop();
-                            (activity as ExKeepActivity).speak("마이크실행")
-                            (activity as ExKeepActivity).promptSpeechInput();
+            if(isUseVoice) {
+                if (abs(dataArray[0]) >= 165 && abs(dataArray[1]) >= 165) {
+                    for (i2 in 2..7) {
+                        if (-105 > dataArray[i2] || dataArray[i2] > -75) {
                             break;
+                        }
+                        if (i2 >= 7) {
+                            if (((activity as ExKeepActivity).tts.isSpeaking)) {
+                                (activity as ExKeepActivity).tts.stop();
+                                (activity as ExKeepActivity).speak("마이크실행")
+                                (activity as ExKeepActivity).promptSpeechInput();
+                                break;
+                            }
                         }
                     }
                 }
@@ -835,19 +836,19 @@ class CameraActivity :
                 }
             }
             Log.d("qqqqqqqqqq","finished")
-            if(abs(dataArray[0])>=165&&abs(dataArray[1])>=165){
-                for(i2 in 2..7){
-                    if(-105<=dataArray[i2]&&dataArray[i2]<= -75){
-
-                    }else{
-                        break;
-                    }
-                    if(i2>=7){
-                        if (((activity as ExActivity).tts.isSpeaking)) {
-                            (activity as ExActivity).tts.stop();
-                            (activity as ExActivity).speak("마이크실행")
-                            (activity as ExActivity).promptSpeechInput();
+            if(isUseVoice) {
+                if (abs(dataArray[0]) >= 165 && abs(dataArray[1]) >= 165) {
+                    for (i2 in 2..7) {
+                        if (-105 > dataArray[i2] || dataArray[i2] > -75) {
                             break;
+                        }
+                        if (i2 >= 7) {
+                            if (((activity as ExActivity).tts.isSpeaking)) {
+                                (activity as ExActivity).tts.stop();
+                                (activity as ExActivity).speak("마이크실행")
+                                (activity as ExActivity).promptSpeechInput();
+                                break;
+                            }
                         }
                     }
                 }

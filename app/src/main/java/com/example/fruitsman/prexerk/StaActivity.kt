@@ -32,6 +32,7 @@ class StaActivity : AppCompatActivity() {
     var restTimeV:Int=0;
     lateinit var elapsedTime:TextView;
     lateinit var remainingTime:TextView;
+    var voiceVar:Boolean=false;
     var restTime:TextView?=null;
     lateinit var TT: TimerTask;
 
@@ -85,7 +86,7 @@ class StaActivity : AppCompatActivity() {
         val postTBtn=findViewById<ImageButton>(R.id.postTBtn);
 
         routineDB=initDB();
-
+        voiceVar=data.getBoolean("zes",false)
 
         initTableK()
         initTableR()
@@ -107,7 +108,7 @@ class StaActivity : AppCompatActivity() {
 
         insertTableD("s1d","s1k","s2k","s1k","s2k","s1k","s2k","s1k","s2k","s1k","s2k",3,3)
 
-        insertTableR("homeRoutine","s1k","s1d","none","none","none","none","none","none","none","none")
+        insertTableR("homeRoutine","s1d","s1k","none","none","none","none","none","none","none","none")
 
         Log.d("yyyyyyyyyy",loadValuesK("standr",10))
 
@@ -231,6 +232,7 @@ class StaActivity : AppCompatActivity() {
                     currentTaskN++;
 
                     val dataE: ExData = ExData.getInstance()
+                    dataE.useVoiceRecognition=voiceVar;//보이스 설정
                     if (loadValuesK(eName, 0) != "n") {
                         //static exercise
                         //searched in db
