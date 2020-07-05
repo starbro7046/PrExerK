@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView"
+                android:text="남은 개수"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView"
+                android:text="남은 세트"
                 android:textAlignment="center"
                 android:textSize="24sp" />
         </LinearLayout>

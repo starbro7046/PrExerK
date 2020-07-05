@@ -107,7 +107,7 @@ class StaActivity : AppCompatActivity() {
 
         insertTableD("s1d","s1k","s2k","s1k","s2k","s1k","s2k","s1k","s2k","s1k","s2k",3,3)
 
-        insertTableR("homeRoutine","s1d","standk","none","none","none","none","none","none","none","none")
+        insertTableR("homeRoutine","s1k","s1d","none","none","none","none","none","none","none","none")
 
         Log.d("yyyyyyyyyy",loadValuesK("standr",10))
 

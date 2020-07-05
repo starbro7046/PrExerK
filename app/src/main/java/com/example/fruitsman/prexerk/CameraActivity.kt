@@ -542,8 +542,10 @@ class CameraActivity :
                 val adjustedX: Float = position.x.toFloat() * widthRatio
 
                 val adjustedY: Float = position.y.toFloat() * heightRatio
+                paint.color=Color.BLACK;
                 when(i)
                 {
+
                     /*
                     0-> paint.color=Color.BLACK;//nose
                     1-> paint.color=Color.BLUE;//leftEye
@@ -551,10 +553,55 @@ class CameraActivity :
                     3-> paint.color=Color.WHITE;//leftEar
                     4->paint.color=Color.YELLOW;//rightEar
                     */
-                    6->paint.color=Color.YELLOW;//rightEar
+                    8->if(feedFrame[0]>=3){
+                        paint.color=Color.RED
+                    }else if(accFrame[0]>=3){
+                        paint.color=Color.GREEN
+                    }
+                    10->if(feedFrame[1]>=3){
+                        paint.color=Color.RED
+                    }else if(accFrame[1]>=3){
+                        paint.color=Color.GREEN
+                    }
+                    7->if(feedFrame[2]>=3){
+                        paint.color=Color.RED
+                    }else if(accFrame[2]>=3){
+                        paint.color=Color.GREEN
+
+                    }
+                    9->if(feedFrame[3]>=3){
+                        paint.color=Color.RED
+                    }else if(accFrame[3]>=3){
+                        paint.color=Color.GREEN
+
+                    }
+                    12->if(feedFrame[4]>=3){
+                        paint.color=Color.RED
+                    }else if(accFrame[4]>=3){
+                        paint.color=Color.GREEN
+
+                    }
+                    14->if(feedFrame[5]>=3){
+                        paint.color=Color.RED
+                    }else if(accFrame[5]>=3){
+                        paint.color=Color.GREEN
+
+                    }
+                    11->if(feedFrame[6]>=3){
+                        paint.color=Color.RED
+                    }else if(accFrame[6]>=3){
+                        paint.color=Color.GREEN
+
+                    }
+                    13->if(feedFrame[7]>=3){
+                        paint.color=Color.RED
+                    }else if(accFrame[7]>=3){
+                        paint.color=Color.GREEN
+
+                    }
+
                 }
                 canvas.drawCircle(adjustedX, adjustedY, circleRadius, paint)
-                paint.color=Color.BLACK;
                 i++
             }
         }
@@ -696,6 +743,7 @@ class CameraActivity :
                 }
             }
         }else if(dataE.exCode==1){
+
             //dynamic exercise
             val setEx1:Int=dataE.set1;
             val setEx2:Int=dataE.set2;

@@ -26,7 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="루틴 이름"
+                android:text="운동루틴 이름"
                 android:textAlignment="center"
                 android:textSize="24sp" />
             <View
@@ -160,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="elapsedTime"
+                android:text="경과 시간"
                 android:textAlignment="center"
                 android:textSize="18sp" />
 
@@ -178,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="remainingTime"
+                android:text="휴식 시간"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -201,7 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="휴식시간:16"
+                android:text="남은  휴식:10"
                 android:textAlignment="center"
                 android:textSize="30sp" />
 
@@ -210,7 +210,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@android:drawable/ic_input_add" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

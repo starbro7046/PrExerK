@@ -15,31 +15,31 @@
             android:id="@+id/staBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Exercise" />
+            android:text="운동하기" />
 
         <Button
             android:id="@+id/setBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="setting" />
+            android:text="운동 프로그램 관리" />
 
         <Button
             android:id="@+id/dataBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data" />
+            android:text="축적 데이터 관리" />
 
         <Button
             android:id="@+id/conveBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Convenience" />
+            android:text="편의기능 관리" />
 
         <Button
             android:id="@+id/commuBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Community" />
+            android:text="커뮤니티" />
 
     </LinearLayout>
 

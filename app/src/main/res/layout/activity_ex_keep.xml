@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Acccuracy"
+                android:text="정확도"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Time Left"
+                android:text="남은 시간"
                 android:textAlignment="center"
                 android:textSize="24sp" />
         </LinearLayout>
