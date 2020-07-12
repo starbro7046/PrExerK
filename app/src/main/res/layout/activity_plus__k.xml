@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Plus_K">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        android:orientation="vertical"
+        android:weightSum="12">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="8">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:fontFamily="@font/font"
+
+                android:gravity="center|right"
+                android:text="이름"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="textPersonName"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="오른쪽 어께 - 오른쪽 팔꿈치 각도"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/left1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="numberSigned"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="오른쪽 팔꿈치 - 오른쪽 손목 각도"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/left2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="numberSigned"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="왼쪽 어께 - 왼쪽 팔꿈치 각도"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/right1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="numberSigned"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="왼쪽 팔꿈치 - 왼쪽 팔목 각도"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/right2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="numberSigned"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="오른쪽 골반 - 오른쪽 무릎 각도"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/left3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="numberSigned"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="오른쪽 무릎 - 오른쪽  발목 각도"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/left4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="numberSigned"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="왼쪽 골반 - 왼쪽 무릎 각도"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/right3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="numberSigned"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="왼쪽 무릎 - 왼쪽 발목 각도"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/right4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="numberSigned"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="수행 시간"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="number"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/font"
+                android:gravity="center|right"
+                android:text="허용 오차각도"
+                android:textAlignment="center"
+                android:textColor="@color/roundcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/accuracy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="10"
+                android:fontFamily="@font/font"
+                android:inputType="number"
+                android:textColor="@color/reeeed" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/roundcolor"
+                app:srcCompat="@android:drawable/ic_menu_revert" />
+
+            <ImageButton
+                android:id="@+id/cam"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/roundcolor"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
+
+            <ImageButton
+                android:id="@+id/save"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/roundcolor"
+                app:srcCompat="@android:drawable/ic_menu_save" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

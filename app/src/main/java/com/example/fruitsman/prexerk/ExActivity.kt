@@ -1,22 +1,35 @@
 package com.example.fruitsman.prexerk
 
-import android.app.Activity
-import android.content.ActivityNotFoundException
+
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.media.AudioManager
 import android.os.Bundle
+import android.os.Environment
+import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
+import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
+import android.text.format.DateFormat
 import android.util.Log
-import android.view.Menu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.lang.reflect.Array
+import androidx.fragment.app.Fragment
+import java.io.File
+import java.io.FileOutputStream
 import java.util.*
 
 class ExActivity : AppCompatActivity() {
+
+    var recordIntent: Intent? = null
+    var sRecognizer: SpeechRecognizer? = null
+    var audio: AudioManager? =null;
+
+    private val FOLDER_NAME = "/PrExer_ScreenShots"
+
     var canCount:Boolean=false;
     lateinit var tts: TextToSpeech;
     private final var FINISH_INTERVAL_TIME:Long = 2000;
@@ -46,35 +59,48 @@ class ExActivity : AppCompatActivity() {
                 //test.setPitch(1,)
             }
         })
+
+        recordIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        recordIntent!!.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, packageName)
+        recordIntent!!.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR")
+
         val data: SharedPreferences =getSharedPreferences("settings", Context.MODE_PRIVATE);
         if(data.getBoolean("end",false)){
-            datas[0]= data.getString("end","").toString()
+            datas[0]= data.getString("endV","").toString()
         }
         if(data.getBoolean("pause",false)){
-            datas[1]= data.getString("pause","").toString()
-        }
-        if(data.getBoolean("resume",false)){
-            datas[2]= data.getString("resume","").toString()
-
+            datas[1]= data.getString("pauseV","").toString()
         }
         if(data.getBoolean("up",false)){
-            datas[3]= data.getString("up","").toString()
+            datas[2]= data.getString("upV","").toString()
 
         }
         if(data.getBoolean("down",false)){
-            datas[4]= data.getString("down","").toString()
+            datas[3]= data.getString("downV","").toString()
 
         }
         if(data.getBoolean("cap",false)){
-            datas[5]= data.getString("cap","").toString()
+            datas[4]= data.getString("capV","").toString()
 
         }
         if(data.getBoolean("reco",false)){
-            datas[6]= data.getString("reco","").toString()
-
+            datas[5]= data.getString("recoV","").toString()
+        }
+        if(data.getBoolean("resume",false)){
+            datas[6]= data.getString("resumeV","").toString() //resume: index 6!!
         }
         val speed=data.getInt("speed",10)
         tts.setSpeechRate(speed/10f)
+    }
+    private fun volUp(){
+        audio?.adjustStreamVolume(AudioManager.STREAM_MUSIC,AudioManager.ADJUST_RAISE,AudioManager.FLAG_SHOW_UI)
+        audio?.adjustStreamVolume(AudioManager.STREAM_MUSIC,AudioManager.ADJUST_RAISE,AudioManager.FLAG_SHOW_UI)
+
+    }
+    private fun volDown(){
+        audio?.adjustStreamVolume(AudioManager.STREAM_MUSIC,AudioManager.ADJUST_LOWER,AudioManager.FLAG_SHOW_UI)
+        audio?.adjustStreamVolume(AudioManager.STREAM_MUSIC,AudioManager.ADJUST_LOWER,AudioManager.FLAG_SHOW_UI)
+
     }
     public fun speak(text:String){
 
@@ -100,6 +126,43 @@ class ExActivity : AppCompatActivity() {
     fun setBool(cancount:Boolean) {
         canCount=cancount;
     }
+    private fun capture(){
+        val timenow= Date()
+        DateFormat.format("yyyy-MM-dd_hh:mm:ss", timenow)
+
+        try {
+            val FOLDER_PATH =
+                Environment.getExternalStorageDirectory().absolutePath + FOLDER_NAME        //fix later, api 29
+
+            val folder = File(FOLDER_PATH)
+            if (!folder.exists()) {
+                folder.mkdirs()
+            }
+            val FILE_PATH = FOLDER_PATH + "/" + timenow + ".png"
+            // create bitmap screen capture
+            val v1 = window.decorView.rootView
+            v1.isDrawingCacheEnabled = true
+            val bitmap = Bitmap.createBitmap(v1.drawingCache)
+            v1.isDrawingCacheEnabled = false
+
+            val imageFile = File(FILE_PATH)
+
+            val outputStream = FileOutputStream(imageFile)
+            val quality = 100
+            bitmap.compress(Bitmap.CompressFormat.PNG, quality, outputStream)
+            outputStream.flush()
+            outputStream.close()
+        }catch (e:Throwable){
+            e.printStackTrace()
+        }
+    }
+    public fun startStt(){
+        runOnUiThread{
+            sRecognizer = SpeechRecognizer.createSpeechRecognizer(this@ExActivity)
+            sRecognizer!!.setRecognitionListener(listener)
+            sRecognizer!!.startListening(recordIntent)
+        }
+    }
     override fun onBackPressed() {
         //super.onBackPressed()
         val tempTime = System.currentTimeMillis()
@@ -114,58 +177,68 @@ class ExActivity : AppCompatActivity() {
                 .show()
         }
     }
-
-    public fun promptSpeechInput() {
-        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-        intent.putExtra(
-            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-        )
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-        intent.putExtra(
-            RecognizerIntent.EXTRA_PROMPT,
-            "speak"
-        )
-        try {
-            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
-        } catch (a: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext,
-                "no supported",
-                Toast.LENGTH_SHORT
-            ).show()
+    private val listener: RecognitionListener = object : RecognitionListener {
+        override fun onReadyForSpeech(params: Bundle) {
+            Toast.makeText(applicationContext, "음성인식을 시작합니다.", Toast.LENGTH_SHORT).show()
         }
+
+        override fun onBeginningOfSpeech() {}
+        override fun onRmsChanged(rmsdB: Float) {}
+        override fun onBufferReceived(buffer: ByteArray) {}
+        override fun onEndOfSpeech() {
+            Log.d("aaaaaaaaaa","end")
+            val tf:Fragment = getSupportFragmentManager().findFragmentById(R.id.container)!!;
+            (tf as CameraActivity).isListening=false;//crash warning
     }
-
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            REQ_CODE_SPEECH_INPUT -> {
-                if (resultCode == Activity.RESULT_OK && null != data) {
-                    var result = data
-                        .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                    if(result.equals("")){
-
-                    }else {
-                        when (result[0]) {
-                            datas[0] ->finishTo()
-                            datas[1]-> Log.d("eeeeee","pause")
-                            datas[2]->Log.d("eeeeee","resume")
-                            datas[3]->Log.d("eeeeee","vol up")
-                            datas[4]->Log.d("eeeeee","vol down")
-                            datas[5]->Log.d("eeeeee","capture")
-                            datas[6]->Log.d("eeeeee","record")
+        override fun onError(error: Int) {
+            val message: String
+            message = when (error) {
+                SpeechRecognizer.ERROR_AUDIO -> "오디오 에러입니다"
+                SpeechRecognizer.ERROR_CLIENT -> "클라이언트 에러입니다"
+                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "권한이 없습니다"
+                SpeechRecognizer.ERROR_NETWORK -> "네트워크 에러입니다"
+                SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "네트워크 시간초과입니다"
+                SpeechRecognizer.ERROR_NO_MATCH -> "찾을 수 없음"
+                SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "인식기 사용 중입니다"
+                SpeechRecognizer.ERROR_SERVER -> "서버가 에러입니다"
+                SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "음성 시간초과입니다"
+                else -> "알 수 없는 오류입니다"
+            }
+            Toast.makeText(applicationContext, "에러가 발생하였습니다 : "+message, Toast.LENGTH_SHORT)
+                .show()
+        }
+        override fun onResults(results: Bundle) {
+            val speeches = results.getStringArrayList(
+                SpeechRecognizer.RESULTS_RECOGNITION
+            )
+            var breakerV:Boolean=false; //var for break 2 times
+            for (i in speeches!!.indices) {
+                for(iD in 0..5){ //except resume value
+                    if(speeches[i].contains(datas[iD])){ //mactching word exists
+                        when(iD){
+                            0-> finishTo() //skip exercise
+                            //1->  //pause exercise
+                            2-> volUp() //vol up
+                            3-> volDown()  //vol down
+                            4-> capture()//capture
+                            //5-> finishTo()   //record
                         }
+                        breakerV=true;
+                        break;
                     }
                 }
+                if(breakerV)
+                    break;
+                //Log.d("aaaaaaaaaaaaaaa",(speeches[i]))
             }
+            Toast.makeText(applicationContext, "일치하는 명령어 없음", Toast.LENGTH_SHORT).show()
         }
+        override fun onPartialResults(partialResults: Bundle) {}
+        override fun onEvent(eventType: Int, params: Bundle) {}
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
+    override fun onDestroy() {
+        tts.stop()
+        sRecognizer?.destroy()
+        super.onDestroy()
     }
 }

@@ -31,27 +31,30 @@ class StaActivity : AppCompatActivity() {
     var eTime:Int=0;
     var restTimeV:Int=0;
     lateinit var elapsedTime:TextView;
-    lateinit var remainingTime:TextView;
+   // lateinit var remainingTime:TextView;
     var voiceVar:Boolean=false;
     var restTime:TextView?=null;
+    var lockS=false;// 두번 실행 방지
     lateinit var TT: TimerTask;
+    lateinit var routineName: String;
 
     override fun onResume() {
         super.onResume()
 
+        lockS=false;
         restTimeV=0;
         validTime=10;//휴식시간
         //var datas:Datas=Datas()
         //datas.setData(3)
 
         if(currentTaskN==1){
-            currentTask.setText(loadValuesR(currentTaskN))
-            afterTask.setText(loadValuesR(currentTaskN+1))
+            currentTask.setText(loadValuesR(routineName,currentTaskN))
+            afterTask.setText(loadValuesR(routineName,currentTaskN+1))
         }else{
             speak("휴식시간")
-            beforeTask.setText(loadValuesR(currentTaskN-1))
-            currentTask.setText(loadValuesR(currentTaskN))
-            afterTask.setText(loadValuesR(currentTaskN+1))
+            //beforeTask.setText(loadValuesR(routineName,currentTaskN-1))
+            currentTask.setText(loadValuesR(routineName,currentTaskN))
+            afterTask.setText(loadValuesR(routineName,currentTaskN+1))
         }
         Log.d("yyyyyyyyyyyu",currentTaskN.toString())
         //countTimer(5)
@@ -71,19 +74,20 @@ class StaActivity : AppCompatActivity() {
             }
         })*/
         val data: SharedPreferences =getSharedPreferences("settings", Context.MODE_PRIVATE);
+        routineName= data.getString("routineName","기본 운동루틴")!!;
         val speed=data.getInt("speed",10)
         //tts.setSpeechRate(speed/10f)
         val routine=findViewById<TextView>(R.id.routine);
         val percentage=findViewById<TextView>(R.id.percentage);
-        val beforeTask=findViewById<TextView>(R.id.beforeTask);
+        //val beforeTask=findViewById<TextView>(R.id.beforeTask);
         val currentTask=findViewById<TextView>(R.id.currentTask);
         val afterTask=findViewById<TextView>(R.id.afterTask);
         elapsedTime=findViewById<TextView>(R.id.elapsedTime);
-        remainingTime=findViewById<TextView>(R.id.remainingTime);
+        //remainingTime=findViewById<TextView>(R.id.remainingTime);
         restTime=findViewById<TextView>(R.id.restTime);
 
         val postBtn=findViewById<ToggleButton>(R.id.postBtn);
-        val postTBtn=findViewById<ImageButton>(R.id.postTBtn);
+        //val postTBtn=findViewById<ImageButton>(R.id.postTBtn);
 
         routineDB=initDB();
         voiceVar=data.getBoolean("zes",false)
@@ -92,38 +96,30 @@ class StaActivity : AppCompatActivity() {
         initTableR()
         initTableD()
         //초기화
-        var sqlDelete = "DELETE FROM ROUTINE_K"
-        routineDB!!.execSQL(sqlDelete)
-        sqlDelete = "DELETE FROM ROUTINE_R"
-        routineDB!!.execSQL(sqlDelete)
-        sqlDelete = "DELETE FROM ROUTINE_D"
-        routineDB!!.execSQL(sqlDelete)
 
-        insertTableK("squatk",1,-144,118,-145,113,-175,-64,-176,-66,10,25)
-        insertTableK("standk",0,-106,-88,-77,-90,-90,-93,-84,-88,5,15)
+        /*
         insertTableK("s1k",0,-99,-99,-72,-81,-90,-88,-83,-92,5,10)
         insertTableK("s2k",0,115,75,72,96,-114,-108,-63,-67,5,15)
 
-        //insertTableK("plankr",1,180,97,-170,94,-105,-95,-92,-92,20,60)
-
         insertTableD("s1d","s1k","s2k","s1k","s2k","s1k","s2k","s1k","s2k","s1k","s2k",3,3)
 
-        insertTableR("homeRoutine","s1d","s1k","none","none","none","none","none","none","none","none")
-
+        insertTableR("homeRoutine","ff","s1k","none","none","none","none","none","none","none","none")
+        */
         Log.d("yyyyyyyyyy",loadValuesK("standr",10))
 
         currentTaskN=getIntent().getIntExtra("index",1)
 
-        routine.setText(loadValuesR(0))
+        routine.setText(loadValuesR(routineName,0))
         Log.d("yyyyyyyyyyyu",currentTaskN.toString())
         //countTimer(5)//add restime later
 
-        postBtn.setOnClickListener{
 
-        }
+        /*
         postTBtn.setOnClickListener{
             validTime+=10;
         }
+
+         */
 
     }fun initDB():SQLiteDatabase{
         Log.d("fffffffffffffff",filesDir.toString())
@@ -165,7 +161,6 @@ class StaActivity : AppCompatActivity() {
             cursor=routineDB!!.rawQuery(sqlQuerySel,null)
             if(cursor.moveToNext()){
                 return cursor.getString(index1)
-
             }else{
                 return "n";
             }
@@ -187,10 +182,10 @@ class StaActivity : AppCompatActivity() {
         }
         return "none";
     }
-    fun loadValuesR(index:Int):String{
+    fun loadValuesR(name:String, index:Int):String{
         if(routineDB!=null)
         {
-            val sqlQuerySel = "SELECT * FROM ROUTINE_R WHERE name='homeRoutine'"
+            val sqlQuerySel = "SELECT * FROM ROUTINE_R WHERE name='"+name+"'"
             var cursor:Cursor?=null
             cursor=routineDB!!.rawQuery(sqlQuerySel,null)
             if(cursor.moveToNext()) {
@@ -204,7 +199,7 @@ class StaActivity : AppCompatActivity() {
         //tts.speak(text, TextToSpeech.QUEUE_FLUSH, null,utteranceId);
     }
     fun countTimer(time:Int){
-        if(currentTaskN==11||loadValuesK(loadValuesR(currentTaskN),10)=="none") {
+        if(currentTaskN==11||loadValuesK(loadValuesR(routineName,currentTaskN),10)=="none") {
             //Log.d("yyyyyyy", loadValuesR(num))
             return
         }
@@ -219,15 +214,16 @@ class StaActivity : AppCompatActivity() {
                 }
                 (context2 as StaActivity).runOnUiThread{
                     elapsedTime.setText("경과시간: " + eTime)
-                    remainingTime.setText("휴식시간" + restTimeV)
+                    //remainingTime.setText("휴식시간" + restTimeV)
                     restTime?.setText("남은시간: " + validTime);
                 }
-                if (validTime <= 0) {
+                if (validTime <= 0 && lockS==false) {
                     (context2 as StaActivity).runOnUiThread {
-                        restTime!!.setText("Done.")
+                        restTime!!.setText("완료")
                     }
-                    val eName: String = loadValuesR(currentTaskN)
-
+                    lockS=true;
+                    val eName: String = loadValuesR(routineName,currentTaskN)
+                    Log.d("bbbbbbbbbbb"," the value:"+currentTaskN)
 
                     currentTaskN++;
 
@@ -297,6 +293,9 @@ class StaActivity : AppCompatActivity() {
                         tranStaEx.putExtra("set2", loadValuesD(eName, 12).toInt())
                         timer.cancel();
                         startActivity(tranStaEx)
+                    }else{
+                        //Toast.makeText(this@StaActivity, "일치하는 운동 없음", Toast.LENGTH_SHORT).show()
+                        timer.cancel()
                     }
                 }
             }

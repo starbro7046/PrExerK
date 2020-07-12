@@ -9,27 +9,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="3"
-        android:orientation="vertical">
+        android:background="@color/backgroundColor"
+        android:orientation="vertical"
+        android:weightSum="3">
 
         <EditText
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/font"
+            android:hint="음성인식할 내용 입력"
             android:inputType="textPersonName"
-            android:text="명령어 입력" />
+            android:textColor="@color/reeeed" />
 
         <ImageButton
             android:id="@+id/rec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/roundcolor"
             app:srcCompat="@android:drawable/ic_btn_speak_now" />
 
         <ImageButton
             android:id="@+id/sav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/roundcolor"
             app:srcCompat="@android:drawable/ic_menu_save" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,5 +9,51 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:background="@color/backgroundColor"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/sta"
+            android:layout_width="match_parent"
+            android:background="@drawable/buttonstyle"
+            android:layout_margin="10dp"
+            android:textColor="@color/roundcolor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="정적운동 편집" />
+
+        <Button
+            android:id="@+id/dy"
+            android:background="@drawable/buttonstyle"
+            android:layout_margin="10dp"
+            android:textColor="@color/roundcolor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="동적운동 편집" />
+
+        <Button
+            android:id="@+id/rou"
+            android:background="@drawable/buttonstyle"
+            android:layout_margin="10dp"
+            android:textColor="@color/roundcolor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="운동루틴 편집" />
+
+        <Button
+            android:background="@drawable/buttonstyle"
+            android:layout_margin="10dp"
+            android:textColor="@color/roundcolor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/selrou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="운동루틴 선택" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

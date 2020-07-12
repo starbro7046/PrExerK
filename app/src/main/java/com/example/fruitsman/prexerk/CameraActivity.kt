@@ -7,15 +7,12 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.*
 import android.hardware.camera2.*
-import android.icu.text.CaseMap
 import android.media.Image
 import android.media.ImageReader
 import android.media.ImageReader.OnImageAvailableListener
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
-import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.util.Size
 import android.util.SparseIntArray
@@ -25,8 +22,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_ex.view.*
-import java.util.*
+import kotlinx.android.synthetic.main.activity_ex.*
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import kotlin.math.*
@@ -136,9 +132,11 @@ class CameraActivity :
 
     val STRAIGHT_RANGE=20;
 
+    public  var isListening:Boolean=false;
     var heightRatio:Float=0f;
     var widthRatio:Float=0f;
     var ratio:Float=0f;
+    var captureThis:Boolean=false;
 
     lateinit var dataArray:IntArray
     var feedFrame:IntArray= intArrayOf(0,0,0,0,0,0,0,0);
@@ -165,7 +163,6 @@ class CameraActivity :
     //minimun accuracy compares with score
 
     private val gradientDifferenceRange:Float=0.2f;
-
     private var min_differnce: Float=0.0f;
     /** [CameraDevice.StateCallback] is called when [CameraDevice] changes its state.   */
     private val stateCallback = object : CameraDevice.StateCallback() {
@@ -233,6 +230,9 @@ class CameraActivity :
     override fun onResume() {
         super.onResume()
         Log.d("hhhhhhhhhhhh","started")
+
+        captureThis=false;
+        isListening=false;
         //Log.d("hhhhhhhh",feedFrame[0].toString())
         feedFrame= intArrayOf(0,0,0,0,0,0,0,0);
         accFrame= intArrayOf(0,0,0,0,0,0,0,0);
@@ -405,6 +405,7 @@ class CameraActivity :
         }
     }
 
+
     /** Fill the yuvBytes with data from image planes.   */
     private fun fillBytes(planes: Array<Image.Plane>, yuvBytes: Array<ByteArray?>) {
         // Row stride is the total number of bytes occupied in memory by a row of an image.
@@ -446,6 +447,7 @@ class CameraActivity :
             val imageBitmap = Bitmap.createBitmap(
                 rgbBytes, previewWidth, previewHeight,
                 Bitmap.Config.ARGB_8888
+
             )
 
             // Create rotated version for portrait display
@@ -510,6 +512,7 @@ class CameraActivity :
         paint.textSize = 40.0f
         paint.strokeWidth = 8.0f
     }
+
     /** Draw bitmap on Canvas.   */
     private fun draw(canvas: Canvas, person: Person, bitmap: Bitmap) {
         val screenWidth: Int = canvas.width
@@ -633,6 +636,7 @@ class CameraActivity :
         */
         // Draw!
         surfaceHolder!!.unlockCanvasAndPost(canvas)
+
     }
 
     /** Process image using Posenet library.   */
@@ -659,7 +663,7 @@ class CameraActivity :
         //최소 1초 이상 유지
         val dataE: ExData = ExData.getInstance()
         val isUseVoice:Boolean=dataE.useVoiceRecognition;
-        if(dataE.exCode==0) {
+        if(dataE.exCode==0) {//static exercise
             dataArray = intArrayOf(
                 getAngle(6, 8, person),
                 getAngle(8, 10, person),
@@ -697,8 +701,8 @@ class CameraActivity :
             if (check) {
                 //succeed
                 if (((activity as ExKeepActivity).tts.isSpeaking)) {
-                   // (activity as ExKeepActivity).finishTo()
                     (activity as ExKeepActivity).stopTts()
+                    //(activity as ExKeepActivity).finishTo()
                     Log.d("eeeeeeeeeee","succceeed")
                 }
                 (activity as ExKeepActivity).speak(" 정확한 자세입니다")
@@ -721,24 +725,26 @@ class CameraActivity :
                 if (textMessage != "") {
                     textMessage += "리세요"
                 }
-                if (!((activity as ExKeepActivity).tts.isSpeaking)) {
+                if (!((activity as ExKeepActivity).tts.isSpeaking)&&!isListening) {
                     //Log.d("eeeeeeeeeee",textMessage);
                     (activity as ExKeepActivity).speak(textMessage)
                 }
             }
-            if(isUseVoice) {
-                if (abs(dataArray[0]) >= 165 && abs(dataArray[1]) >= 165) {
+            if(isUseVoice&&!isListening) { //start if seleceted to use voice and if not listening
+                if (abs(dataArray[0]) >= 165 && abs(dataArray[1]) >= 165) {//오른쪽 팔이 수평인가, 오차범위 +-15
                     for (i2 in 2..7) {
-                        if (-105 > dataArray[i2] || dataArray[i2] > -75) {
+                        if (-105 > dataArray[i2] || dataArray[i2] > -75) {//나머지 관절들이 일자인가 오차범위 +-15
                             break;
                         }
                         if (i2 >= 7) {
-                            if (((activity as ExKeepActivity).tts.isSpeaking)) {
+                            if (((activity as ExKeepActivity).tts.isSpeaking)) { //stop if tts running 말하면 끊음
                                 (activity as ExKeepActivity).tts.stop();
-                                (activity as ExKeepActivity).speak("마이크실행")
-                                (activity as ExKeepActivity).promptSpeechInput();
-                                break;
                             }
+                            (activity as ExKeepActivity).speak("말하세요")
+                            isListening=true
+                            (activity as ExKeepActivity).tts.stop();
+                            (activity as ExKeepActivity).startStt()
+                            break;
                         }
                     }
                 }
@@ -783,29 +789,30 @@ class CameraActivity :
                 }
             }
             (activity as ExActivity).setBool(check);
+            Log.d("qqqqqqqqqqqqq","ff"+currentEx);
             Log.d("eeeeeeeeeee","one");
+            if(currentEx>=lengthEx){
+                Log.d("wwwwwwwwwww","ff"+lengthEx);
+                setC1++;
+                currentEx=1;
+                Log.d("wwwwwwwwwwwwwwwwww",(""+currentEx+"|"+setC1+" | "+setC2+" | "+setEx1+"|"+setEx2+""))
+                if(setC1>=setEx1){
+                    setC2++;
+                    setC1=0;
+                }
+                if(setC2>=setEx2){
+                    (activity as ExActivity).finishTo()
+                }
+                (activity as ExActivity).runOnUiThread {
+                    (activity as ExActivity).setSet(setC1, setC2, setEx1, setEx2)
+                }
+                //(activity as ExActivity).setSet(setC1,setC2,setEx1,setEx2)
+                //(activity as ExActivity).finishTo()
+            }
             if (check) {
+                currentEx++;
                 //succeed
                 Log.d("qqqqqqqqqqq","calleddddddd")
-                if(currentEx>=lengthEx){
-                    setC1++;
-                    currentEx=1;
-                    Log.d("wwwwwwwwwwwwwwwwww",(""+currentEx+"|"+setC1+" | "+setC2+" | "+setEx1+"|"+setEx2+""))
-                    if(setC1>=setEx1){
-                        setC2++;
-                        setC1=0;
-                    }
-                    if(setC2>=setEx2){
-                        (activity as ExActivity).finishTo()
-                    }
-                    (activity as ExActivity).runOnUiThread {
-                        (activity as ExActivity).setSet(setC1, setC2, setEx1, setEx2)
-                    }
-                    //(activity as ExActivity).setSet(setC1,setC2,setEx1,setEx2)
-                    //(activity as ExActivity).finishTo()
-                }else {
-                    currentEx++;
-                }
                 if (((activity as ExActivity).tts.isSpeaking)) {
                     (activity as ExActivity).stopTts()
                     Log.d("eeeeeeeeeee","succceeed")
@@ -830,13 +837,13 @@ class CameraActivity :
                 if (textMessage != "") {
                     textMessage += "리세요"
                 }
-                if (!((activity as ExActivity).tts.isSpeaking)) {
+                if (!((activity as ExActivity).tts.isSpeaking)&&!isListening) {
                     //Log.d("eeeeeeeeeee",textMessage);
                     (activity as ExActivity).speak(textMessage)
                 }
             }
             Log.d("qqqqqqqqqq","finished")
-            if(isUseVoice) {
+            if(isUseVoice &&!isListening) {
                 if (abs(dataArray[0]) >= 165 && abs(dataArray[1]) >= 165) {
                     for (i2 in 2..7) {
                         if (-105 > dataArray[i2] || dataArray[i2] > -75) {
@@ -845,13 +852,28 @@ class CameraActivity :
                         if (i2 >= 7) {
                             if (((activity as ExActivity).tts.isSpeaking)) {
                                 (activity as ExActivity).tts.stop();
-                                (activity as ExActivity).speak("마이크실행")
-                                (activity as ExActivity).promptSpeechInput();
-                                break;
                             }
+                            (activity as ExActivity).speak("말하세요")
+                            isListening=true
+                            (activity as ExKeepActivity).tts.stop();
+
+                            (activity as ExActivity).startStt()
+                            break;
                         }
                     }
                 }
+            }
+        }else if (dataE.exCode==2){//capture
+            if(captureThis){
+                (activity as CameraGet).finishTo(getAngle(6, 8, person),
+                    getAngle(8, 10, person),
+                    getAngle(5, 7, person),
+                    getAngle(7, 9, person),
+                    getAngle(12, 14, person),
+                    getAngle(14, 16, person),
+                    getAngle(11, 13, person),
+                    getAngle(13, 15, person));
+                captureThis=false;
             }
         }
         //(activity as ExKeepActivity).speak()
