@@ -81,7 +81,7 @@ class StaActivity : AppCompatActivity() {
         elapsedTime=findViewById<TextView>(R.id.elapsedTime);
         remainingTime=findViewById<TextView>(R.id.remainingTime);
         restTime=findViewById<TextView>(R.id.restTime);
-
+        //test
         val postBtn=findViewById<ToggleButton>(R.id.postBtn);
         val postTBtn=findViewById<ImageButton>(R.id.postTBtn);
 
