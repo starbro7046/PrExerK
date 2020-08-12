@@ -22,6 +22,7 @@ public class Tueight extends AppCompatActivity {
                 Intent tranConve = new Intent(Tueight.this, Tunine.class);
                 tranConve.setFlags(FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(tranConve);
+                //test
             }
         });
     }
