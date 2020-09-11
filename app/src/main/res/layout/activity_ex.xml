@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    android:backgroundTint="#00FFFFFF"
+    android:foregroundTint="#00FFFFFF"
     tools:context=".ExActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:weightSum="12"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="13">
 
         <FrameLayout
             android:id="@+id/container"
@@ -23,10 +26,15 @@
 
         </FrameLayout>
 
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/roundcolor" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:background="@color/backgroundColor"
             android:orientation="horizontal">
 
@@ -35,23 +43,48 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/font"
+                android:fontFamily="sans-serif-thin"
                 android:text="남은 개수"
                 android:textAlignment="center"
                 android:textColor="@color/reeeed"
                 android:textSize="24sp" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/textA" />
 
             <TextView
                 android:id="@+id/set"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/font"
+                android:fontFamily="sans-serif-thin"
                 android:text="남은 세트"
                 android:textAlignment="center"
                 android:textColor="@color/reeeed"
                 android:textSize="24sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:background="@color/backgroundColor"
+            android:backgroundTint="@color/backgroundColor"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:backgroundTint="@color/backgroundColor"
+                app:srcCompat="@drawable/transformaudi" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

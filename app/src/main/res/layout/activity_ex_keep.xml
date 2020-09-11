@@ -8,9 +8,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:weightSum="12"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="13">
 
         <FrameLayout
             android:id="@+id/container2"
@@ -22,10 +22,15 @@
 
         </FrameLayout>
 
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/roundcolor" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:background="@color/backgroundColor"
             android:orientation="horizontal">
 
@@ -34,11 +39,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/font"
+                android:fontFamily="sans-serif-thin"
                 android:text="남은 시간"
                 android:textAlignment="center"
                 android:textColor="@color/reeeed"
                 android:textSize="36sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:background="@color/backgroundColor"
+            android:backgroundTint="@color/backgroundColor"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/backgroundColor"
+                app:srcCompat="@drawable/transformaudi" />
         </LinearLayout>
 
     </LinearLayout>

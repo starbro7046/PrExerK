@@ -78,7 +78,6 @@ class StaActivity : AppCompatActivity() {
         val speed=data.getInt("speed",10)
         //tts.setSpeechRate(speed/10f)
         val routine=findViewById<TextView>(R.id.routine);
-        val percentage=findViewById<TextView>(R.id.percentage);
         //val beforeTask=findViewById<TextView>(R.id.beforeTask);
         val currentTask=findViewById<TextView>(R.id.currentTask);
         val afterTask=findViewById<TextView>(R.id.afterTask);

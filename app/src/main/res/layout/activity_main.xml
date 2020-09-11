@@ -7,23 +7,16 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:background="@color/backgroundColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/mainimage" />
 
         <Button
             android:id="@+id/staBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/buttonstyle"
+            android:backgroundTint="#00FFFFFF"
             android:fontFamily="@font/font"
             android:text="운동하기"
             android:textColor="@color/roundcolor"
@@ -45,23 +38,23 @@
             android:id="@+id/dataBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font"
             android:layout_margin="10dp"
             android:background="@drawable/buttonstyle"
+            android:fontFamily="@font/font"
+            android:text="축적 데이터 관리"
             android:textColor="@color/roundcolor"
-            android:textSize="18sp"
-            android:text="축적 데이터 관리" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/conveBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font"
             android:layout_margin="10dp"
             android:background="@drawable/buttonstyle"
+            android:fontFamily="@font/font"
+            android:text="편의기능 관리"
             android:textColor="@color/roundcolor"
-            android:textSize="18sp"
-            android:text="편의기능 관리" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/init"
