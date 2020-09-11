@@ -4,79 +4,172 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@drawable/newplash"
+        android:orientation="vertical"
+        android:weightSum="183"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="10"
+            android:orientation="vertical"></LinearLayout>
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="match_parent"
+            android:layout_weight="25"
+            android:fontFamily="@font/arialer"
+            android:text="PREXER"
+            android:textAlignment="center"
+            android:textColor="#BC8A1616"
+            android:textSize="77sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="match_parent"
+            android:layout_weight="8"
+            android:fontFamily="@font/arialer"
+            android:text="당신만을 위한 운동 솔루션"
+            android:textAlignment="center"
+            android:textColor="#BC8A1616"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="20"
+            android:orientation="horizontal"></LinearLayout>
 
         <Button
             android:id="@+id/staBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_weight="15"
+            android:background="#00FFFFFF"
             android:backgroundTint="#00FFFFFF"
-            android:fontFamily="@font/font"
+            android:fontFamily="@font/arialer"
             android:text="운동하기"
-            android:textColor="@color/roundcolor"
-            android:textSize="18sp" />
+            android:textAlignment="textStart"
+            android:textColor="@color/whiiite"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view10"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="200dp"
+            android:background="@color/textA" />
 
         <Button
             android:id="@+id/setBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/buttonstyle"
-            android:fontFamily="@font/font"
-            android:text="운동 프로그램 관리"
-            android:textColor="@color/roundcolor"
-            android:textSize="18sp"
+            android:layout_weight="15"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/arialer"
+            android:text="운동 ・ 루틴관리"
+            android:textAlignment="textStart"
+            android:textColor="@color/whiiite"
+            android:textSize="25sp"
             android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view11"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="200dp"
+            android:background="@color/textA" />
 
         <Button
             android:id="@+id/dataBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/buttonstyle"
-            android:fontFamily="@font/font"
-            android:text="축적 데이터 관리"
-            android:textColor="@color/roundcolor"
-            android:textSize="18sp" />
+            android:layout_weight="15"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/arialer"
+            android:text="루틴 플래너"
+            android:textAlignment="textStart"
+            android:textColor="@color/whiiite"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="240dp"
+            android:background="@color/textA" />
 
         <Button
             android:id="@+id/conveBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/buttonstyle"
-            android:fontFamily="@font/font"
-            android:text="편의기능 관리"
-            android:textColor="@color/roundcolor"
-            android:textSize="18sp" />
+            android:layout_weight="15"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/arialer"
+            android:text="기능 설정"
+            android:textAlignment="textStart"
+            android:textColor="@color/whiiite"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="180dp"
+            android:background="@color/textA" />
 
         <Button
             android:id="@+id/init"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/buttonstyle"
-            android:fontFamily="@font/font"
-            android:text="모든 운동 데이터 기본값으로 초기화"
-            android:textColor="@color/roundcolor"
-            android:textSize="18sp" />
+            android:layout_weight="15"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/arialer"
+            android:text="모든 데이터 초기화"
+            android:textAlignment="textStart"
+            android:textColor="@color/whiiite"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="180dp"
+            android:background="@color/textA" />
 
         <Button
             android:id="@+id/help"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/buttonstyle"
-            android:fontFamily="@font/font"
+            android:layout_weight="15"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/arialer"
             android:text="도움말"
-            android:textColor="@color/roundcolor"
-            android:textSize="18sp" />
+            android:textAlignment="viewStart"
+            android:textColor="@color/whiiite"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="30"
+            android:orientation="horizontal"></LinearLayout>
 
     </LinearLayout>
 
