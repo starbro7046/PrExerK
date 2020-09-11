@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/new_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Tunine"></activity>
+        <activity android:name=".CalenderActivity"></activity>
+        <activity android:name=".Tunine" />
         <activity android:name=".Tueight" />
         <activity android:name=".Tuseven" />
         <activity android:name=".Tusix" />

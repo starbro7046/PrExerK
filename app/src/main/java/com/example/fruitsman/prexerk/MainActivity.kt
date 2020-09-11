@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(tranSet)
         }
         dataBtn.setOnClickListener {
-            val tranData = Intent(this@MainActivity, DataActivity::class.java)
+            val tranData = Intent(this@MainActivity, CalenderActivity::class.java)
             startActivity(tranData)
         }
         conveBtn.setOnClickListener {
