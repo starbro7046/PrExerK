@@ -357,7 +357,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_revert" />
 
             <ImageButton
@@ -365,7 +365,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_save" />
         </LinearLayout>
 

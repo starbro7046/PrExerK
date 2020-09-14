@@ -66,9 +66,9 @@
             <ImageButton
                 android:id="@+id/end2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:backgroundTint="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
 
             <com.kyleduo.switchbutton.SwitchButton
@@ -105,9 +105,9 @@
             <ImageButton
                 android:id="@+id/pause2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:backgroundTint="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
 
             <com.kyleduo.switchbutton.SwitchButton
@@ -143,9 +143,9 @@
             <ImageButton
                 android:id="@+id/resume2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:backgroundTint="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
 
             <com.kyleduo.switchbutton.SwitchButton
@@ -181,9 +181,9 @@
             <ImageButton
                 android:id="@+id/up2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:backgroundTint="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
 
             <com.kyleduo.switchbutton.SwitchButton
@@ -219,9 +219,9 @@
             <ImageButton
                 android:id="@+id/down2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:backgroundTint="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
 
             <com.kyleduo.switchbutton.SwitchButton
@@ -257,9 +257,9 @@
             <ImageButton
                 android:id="@+id/cap2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:backgroundTint="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
 
             <com.kyleduo.switchbutton.SwitchButton
@@ -295,9 +295,9 @@
             <ImageButton
                 android:id="@+id/reco2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:backgroundTint="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
 
             <com.kyleduo.switchbutton.SwitchButton
@@ -353,7 +353,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/roundcolor"
+                    android:background="@drawable/buttonstyle"
                     app:srcCompat="@android:drawable/arrow_up_float" />
 
                 <ImageButton
@@ -361,7 +361,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/roundcolor"
+                    android:background="@drawable/buttonstyle"
                     app:srcCompat="@android:drawable/arrow_down_float" />
             </LinearLayout>
 

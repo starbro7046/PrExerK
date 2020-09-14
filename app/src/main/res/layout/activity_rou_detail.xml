@@ -357,17 +357,17 @@
             <ImageButton
                 android:id="@+id/back"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_revert" />
 
             <ImageButton
                 android:id="@+id/sele"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/roundcolor"
+                android:background="@drawable/buttonstyle"
                 app:srcCompat="@android:drawable/ic_menu_save" />
         </LinearLayout>
 

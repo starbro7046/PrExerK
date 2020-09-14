@@ -26,7 +26,7 @@
             android:layout_height="0dp"
             android:layout_weight="6"
             android:fontFamily="@font/font"
-            android:text="음성인식 편의기능을 키고 운동 중 차렸 자세로 오른쪽 팔만 90도 올린 자세를 취하면, 음성인식을 시작합니다. 이 화면에서 음성 인식으로 실행할 기능들과, 음성 명령어를 설정할 수 있습니다. "
+            android:text=" 음성인식 편의기능을 키고 운동 중 차렸 자세로 오른쪽 팔만 90도 올린 자세를 취하면, 음성인식을 시작합니다. 이 화면에서 음성 인식으로 실행할 기능들과, 음성 명령어를 설정할 수 있습니다. "
             android:textColor="@color/ksw_md_solid_disable"
             android:textSize="24sp" />
 

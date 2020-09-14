@@ -23,7 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/listspage2" />
+                app:srcCompat="@drawable/listpage" />
 
             <ImageView
                 android:id="@+id/imageView2"

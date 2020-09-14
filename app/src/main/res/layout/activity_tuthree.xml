@@ -27,7 +27,7 @@
             android:layout_height="0dp"
             android:layout_weight="6"
             android:fontFamily="@font/font"
-            android:text='"운동 프로그램 관리" 에서 정적운동과, 동적운동을 추가하고 편집할 수 있습니다.\n"운동루틴 편집" 에서 할 운동의 목록을 편집합니다.\n"운동루틴 선택" 에서 할 운동 목록을 선택합니다'
+            android:text='"운동 ・ 루틴관리" 에서 정적운동과, 동적운동을 추가하고 편집할 수 있습니다.\n"운동루틴 편집" 에서 할 운동의 목록을 편집합니다.\n"운동루틴 선택" 에서 할 운동 목록을 선택합니다'
             android:textColor="@color/ksw_md_solid_disable"
             android:textSize="24sp" />
 

@@ -26,7 +26,7 @@
             android:layout_height="0dp"
             android:layout_weight="6"
             android:fontFamily="@font/font"
-            android:text='동적운동을 추가하거나 편집할 때 나타나는 화면입니다. 동적운동에서 순서대로 취할 동작을 최대 10개까지 입력할 수 있으며, 각 자세에 저장했던 정적운동의 이름을 입력합니다. 예를 들어, 정적운동에 저장했던 이름 "서있기" 나 "구분동작1"을 자세에 입력할 수 있습니다. 개수와 세트를 입력합니다.'
+            android:text=' 동적운동을 추가하거나 편집할 때 나타나는 화면입니다. 동적운동에서 순서대로 취할 동작을 최대 10개까지 입력할 수 있으며, 각 자세에 저장했던 정적운동의 이름을 입력합니다. 예를 들어, 정적운동에 저장했던 이름 "서있기" 나 "구분동작1"을 자세에 입력할 수 있습니다. 개수와 세트를 입력합니다.'
             android:textColor="@color/ksw_md_solid_disable"
             android:textSize="24sp" />
 

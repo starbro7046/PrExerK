@@ -26,7 +26,7 @@
             android:layout_height="0dp"
             android:layout_weight="6"
             android:fontFamily="@font/font"
-            android:text='"운동하기"를 누르면 운동 화면이 나타납니다. 하고있는 운동루틴의 이름, 현재와 다음에 하게 될 운동이름이 나타나고 남은시간과 경과시간이 표시되고, 일시정지/재개를 할 수 있습니다. 시간이 지나면 자동으로 다음 운동으로 넘어갑니다.'
+            android:text=' "운동하기"를 누르면 운동 화면이 나타납니다. 하고있는 운동루틴의 이름, 현재와 다음에 하게 될 운동이름이 나타나고 남은시간과 경과시간이 표시되고, 일시정지/재개를 할 수 있습니다. 시간이 지나면 자동으로 다음 운동으로 넘어갑니다.'
             android:textColor="@color/ksw_md_solid_disable"
             android:textSize="24sp" />
 
